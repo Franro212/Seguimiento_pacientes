@@ -3,9 +3,9 @@ import Error from "./Error";
 
 function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
   const [nombre, setNombre] = useState("");
-  const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
+  const [numero, setNumero]= useState("")
   const [sintomas, setSintomas] = useState("");
   const [error, setError] = useState(false);
   const id = Date.now().toString(36);
@@ -13,9 +13,8 @@ function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
   //El codigo se ejecuta cuando se presiona en editar seteamos los valores y los devolvemos al form nuevamente para editar
   useEffect(()=>{
            if (Object.keys(editPaciente).length > 0 ){
-             
+             setNumero(editPaciente.numero)
              setNombre(editPaciente.nombre)
-             setPropietario(editPaciente.propietario)
              setEmail(editPaciente.email)
              setFecha(editPaciente.fecha)
              setSintomas(editPaciente.sintomas)
@@ -29,7 +28,7 @@ function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
 
     //Validacion del formulario
 
-    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+    if ([nombre, fecha, ].includes("")) {
       setError("true");
       return;
     }
@@ -38,10 +37,10 @@ function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
 
     const objetoPaciente = {
       nombre,
-      propietario,
       email,
       fecha,
       sintomas,
+      numero
       
 
     };
@@ -60,54 +59,40 @@ function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
 
     //Reiniciamos los valores del form seteando las variables con un string vacio
     setNombre("");
-    setPropietario("");
     setEmail("");
     setFecha("");
     setSintomas("");
+    setNumero("")
   };
 
   return (
     <div className="md:w-1/2 lg:w-2/5">
-      <h2 className="font-black text-3xl text-center">Seguimiento Pacientes</h2>
+      <h2 className="font-black text-3xl text-center">Seguimiento Clientes</h2>
 
       <p className="text-lg mt-5 text-center mb-10">
-        Añade Paciente y {""}
+        Añade Clientes y {""}
         <span className="text-indigo-600 font-bold">Administralos</span>
       </p>
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10 mx-5 "
       >
-        {error && <Error mensaje='Todos los campos son requeridos'/>}
+        {error && <Error mensaje='Nombre y fecha son requeridos'/>}
         <div className="mb-5">
-          <label htmlFor="mascota" className="block text-gray-700 uppercase">
-            Nombre Mascota
+          <label htmlFor="nombre" className="block text-gray-700 uppercase">
+            Nombre Completo
           </label>
           <input
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
-            id="mascota"
+            id="nombre"
             type="text"
-            placeholder="Nombre de la Mascota"
+            placeholder="Nombre Completo"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            required
           />
         </div>
-        <div className="mb-5">
-          <label
-            htmlFor="propietario"
-            className="block text-gray-700 uppercase"
-          >
-            Nombre Propietario
-          </label>
-          <input
-            value={propietario}
-            onChange={(e) => setPropietario(e.target.value)}
-            id="propietario"
-            type="text"
-            placeholder="Nombre del Propietario"
-            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
-          />
-        </div>
+      
         <div className="mb-5">
           <label htmlFor="email" className="block text-gray-700 uppercase">
             Email
@@ -117,38 +102,52 @@ function Formulario({ setPacientes, pacientes, editPaciente, setEditPaciente}) {
             onChange={(e) => setEmail(e.target.value)}
             id="email"
             type="email"
-            placeholder="Email del Propietario"
+            placeholder="Email"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
           />
         </div>
         <div className="mb-5">
-          <label htmlFor="alta" className="block text-gray-700 uppercase">
-            Alta
+          <label htmlFor="numero" className="block text-gray-700 uppercase">
+            Numero de Telefono
+          </label>
+          <input
+            value={numero}
+            onChange={(e) => setNumero(e.target.value)}
+            id="numero"
+            type="tel"
+            placeholder="Numero de telefono"
+            className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+          />
+        </div>
+        <div className="mb-5">
+          <label htmlFor="fecha" className="block text-gray-700 uppercase">
+            Dia agendado
           </label>
           <input
             value={fecha}
             onChange={(e) => setFecha(e.target.value)}
-            id="alta"
+            id="fecha"
             type="date"
             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+            required
           />
         </div>
         <div className="mb-5">
           <label htmlFor="sintomas" className="block text-gray-700 uppercase">
-            Sintomas
+            Notas
           </label>
           <textarea
             value={sintomas}
             onChange={(e) => setSintomas(e.target.value)}
             id="sintomas"
             className="border-2 w-full p-2 placeholder-gray-400 rounded-md"
-            placeholder="Describe los sintomas"
+            placeholder="Notas"
           />
         </div>
         <input
           type="submit"
           className="w-full bg-indigo-600 text-white p-3 uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-all"
-          value = { editPaciente.id ? ('Guardar cambios') : ('Agregar paciente') }
+          value = { editPaciente.id ? ('Guardar cambios') : ('Agendar cita') }
         />
       </form>
     </div>

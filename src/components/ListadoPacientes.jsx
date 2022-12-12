@@ -6,7 +6,7 @@ function ListadoPacientes({pacientes, setEditPaciente, eliminarPaciente }) {
   return (
     <div className='h-screen md:w-1/2 lg:w-3/5 md:h-screen overflow-scroll overflow-x-hidden'>
     {pacientes.length !=0 ?
-    (<> <h2 className='font-black text-3xl text-center'>Listado Pacientes</h2>    
+    (<> <h2 className='font-black text-3xl text-center'>Agenda</h2>    
             <p className='txt-xl mt-5 mb-10 text-center'> 
     Administra tus {''}
 
@@ -28,7 +28,7 @@ function ListadoPacientes({pacientes, setEditPaciente, eliminarPaciente }) {
      
 
 
-     : (<h2 className='font-black text-3xl text-center'>No tienes pacientes</h2>)   }
+     : (<h2 className='font-black text-3xl text-center'>No tienes clientes agendados</h2>)   }
    
    
     </div>

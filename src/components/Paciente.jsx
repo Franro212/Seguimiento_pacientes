@@ -1,7 +1,7 @@
 
 
 function Paciente({paciente, setEditPaciente, eliminarPaciente}) {
-  const {nombre, propietario, email, fecha, sintomas, id} = paciente
+  const {nombre, numero, email, fecha, sintomas, id} = paciente
 
   const eliminar = ()=>{
       const respuesta = confirm("Deseas eliminar este paciente?");
@@ -15,16 +15,16 @@ function Paciente({paciente, setEditPaciente, eliminarPaciente}) {
       <p className='font-bold mb-3 text-gray-700 uppercase'> Nombre: {''}
         <span className='font-normal normal-case'>{nombre}</span>
       </p>
-      <p className='font-bold mb-3 text-gray-700 uppercase'> Propietario: {''}
-        <span className='font-normal normal-case'>{propietario}</span>
+      <p className='font-bold mb-3 text-gray-700 uppercase'> Numero de telefono: {''}
+        <span className='font-normal normal-case'>{numero}</span>
       </p>
       <p className='font-bold mb-3 text-gray-700 uppercase'> Email: {''}
         <span className='font-normal normal-case'>{email}</span>
       </p>
-      <p className='font-bold mb-3 text-gray-700 uppercase'> Fecha alta: {''}
+      <p className='font-bold mb-3 text-gray-700 uppercase'> Dia agendado: {''}
         <span className='font-normal normal-case'>{fecha}</span>
       </p>
-      <p className='font-bold mb-3 text-gray-700 uppercase'> Sintomas: {''}
+      <p className='font-bold mb-3 text-gray-700 uppercase'> Notas: {''}
         <span className='font-normal normal-case'> {sintomas} </span>
       </p>
       <div 
